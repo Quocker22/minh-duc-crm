@@ -1,13 +1,9 @@
 trigger:
 - main
 
-resources:
-- repo: self
-
 variables:
   tag: '$(Build.BuildId)'
   dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
-  imageName: 'yourappname'
 
 stages:
 - stage: Build
@@ -25,14 +21,6 @@ stages:
         dockerfile: '$(dockerfilePath)'
         tags: |
           $(tag)
-    - task: Docker@2
-      displayName: Push image to container registry
-      inputs:
-        command: push
-        containerRegistry: 'YourContainerRegistryConnection'
-        repository: $(imageName)
-        tags: |
-          $(tag)
 
 - stage: Test
   displayName: Test
@@ -42,19 +30,16 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Run tests in container
-      inputs:
-        command: run
-        containerRegistry: 'YourContainerRegistryConnection'
-        image: '$(imageName):$(tag)'
-        arguments: 'run your-test-command'
+    - script: |
+        # Thay thế bằng lệnh test thực tế của bạn
+        echo "Running tests..."
+        # Ví dụ: npm test
 
 - stage: Deploy
   displayName: Deploy to production
   jobs:
   - deployment: Deploy
-    displayName: Deploy to AKS
+    displayName: Deploy app
     pool:
       vmImage: ubuntu-latest
     environment: 'production'
@@ -62,15 +47,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: Kubernetes@1
-            displayName: 'Deploy to Kubernetes'
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              namespace: 'default'
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
-              imagePullSecrets: |
-                dockerauth
-              containers: |
-                $(containerRegistry)/$(imageName):$(tag)
+          - script: |
+              # Thay thế bằng lệnh deploy thực tế của bạn
+              echo "Deploying application..."
+              # Ví dụ: kubectl apply -f deployment.yaml
