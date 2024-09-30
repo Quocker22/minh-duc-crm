@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  app:
+    platform: linux/arm64
+    image: CRM/CRM:v1
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    volumes:
+      - ./:/app
+      # - /app/node_modules
+    ports:
+      - '8100:8100'
+    restart: unless-stopped
+    command: /app/entrypoint.sh
+    environment:
+      NODE_ENV: development

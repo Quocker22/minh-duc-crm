@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  micro-cms:
+    build: .
+    ports:
+      - "8200:80"

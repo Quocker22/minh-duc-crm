@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Minh Đức CRM" />
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700&family=JetBrains+Mono:wght@700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Minh Đức CRM</title>
+    <link rel="shortcut icon" href="/media/logos/logo.png" />
+    <link rel="stylesheet" id="layout-styles-anchor" href="/splash-screen.css" />
+</head>
+
+<body id="kt_body" class="page-loading splash-screen">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        if (document.documentElement) {
+            var defaultThemeMode = 'light';
+
+            var hasKTName = document.body.hasAttribute('data-kt-name');
+            var lsKey = 'kt_' + (hasKTName ? name + '_' : '') + 'theme_mode_value';
+            var themeMode = localStorage.getItem(lsKey);
+            if (!themeMode) {
+                themeMode = defaultThemeMode;
+            }
+
+            document.documentElement.setAttribute('data-theme', themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+
+    <div id="root" class="d-flex flex-column flex-root"></div>
+    <div id="splash-screen" class="splash-screen">
+        <!-- <img src="/media/logos/default1-small.svg" alt="Minh Đức CRM" /> -->
+        <!-- <span>Loading ...</span> -->
+        <div class="loader"></div>
+    </div>
+    <div id="root-modals"></div>
+    <script type="module" src="/src/index.tsx"></script>
+</body>
+
+</html>

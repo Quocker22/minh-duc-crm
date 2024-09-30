@@ -1,0 +1,12 @@
+// Tạo một tệp CSS mới (ví dụ: WorkerManageTable.css) và thêm các lớp tùy chỉnh
+.cell-absent {
+  background-color: #ffcccc; /* màu nền cho cell vắng mặt */
+}
+
+.cell-present {
+  background-color: #fafafa; /* màu nền cho cell có mặt */
+}
+
+.highlight-column {
+  background-color: #333; /* Change to your preferred background color */
+}
