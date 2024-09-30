@@ -1,46 +1,27 @@
 trigger:
 - main
 
-variables:
-  tag: '$(Build.BuildId)'
-
 stages:
 - stage: Build
-  displayName: Build image
   jobs:
   - job: Build
-    displayName: Build
     pool:
       vmImage: ubuntu-latest
     steps:
-    - script: |
-        echo "Simulating Docker build process..."
-        echo "Docker image built successfully with tag: $(tag)"
+    - script: echo "Build stage passed"
 
 - stage: Test
-  displayName: Test
   jobs:
   - job: Test
-    displayName: Run tests
     pool:
       vmImage: ubuntu-latest
     steps:
-    - script: |
-        echo "Simulating test execution..."
-        echo "All tests passed successfully!"
+    - script: echo "Test stage passed"
 
 - stage: Deploy
-  displayName: Deploy to production
   jobs:
-  - deployment: Deploy
-    displayName: Deploy app
+  - job: Deploy
     pool:
       vmImage: ubuntu-latest
-    environment: 'production'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: |
-              echo "Simulating deployment process..."
-              echo "Application deployed successfully to production!"
+    steps:
+    - script: echo "Deploy stage passed"
